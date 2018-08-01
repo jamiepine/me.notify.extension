@@ -35,7 +35,8 @@
     bellButton.setAttribute('tabindex', '0');
     bellButton.setAttribute('role', 'button');
     bellButton.innerText = `Notify.me`;
-    bellButton.style = 'color: #B4DA55; border: 1px solid #B4DA55; width: 75px; border-radius: 3px; margin: 7px;';
+    bellButton.style =
+      'color: var(--yt-live-chat-tertiary-text-color); border: 1px solid var(--yt-live-chat-tertiary-text-color); width: 100px; border-radius: 3px; margin: 7px;font-size: 1.4rem; font-weight: 500; letter-spacing: .007px;';
 
     bellButton.onclick = function() {
       alert(channelID());
