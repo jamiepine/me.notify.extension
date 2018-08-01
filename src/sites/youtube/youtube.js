@@ -15,10 +15,14 @@
     return channelName;
   };
 
-  const watchPage = () => {
-    const videoMeta = document.getElementById(`meta`);
-    const subscribeButtonSection = videoMeta.parentNode.querySelector(`#meta-contents #subscribe-button`);
-    const subscribeButton = subscribeButtonSection.childNodes[0];
+  const watchPage = ({ type }) => {
+    if (type === 'yt-navigate-finish') document.body.setAttribute('data-notified', 'false');
+    if (document.body.getAttribute('data-notified') === 'true') return; // Don't embed if it's already on the page
+
+    const videoMeta = document.querySelector(`#meta ytd-video-secondary-info-renderer .ytd-video-secondary-info-renderer`);
+    if (!videoMeta) return;
+    const subscribeButtonSection = videoMeta.querySelector(`#meta-contents #subscribe-button`);
+    if (!subscribeButtonSection) return;
 
     document.querySelector(`#subscribe-button.ytd-video-secondary-info-renderer`).style.flexDirection = 'row';
 
@@ -36,13 +40,15 @@
       alert(channelID());
     };
 
-    subscribeButtonSection.insertBefore(bellButton, subscribeButton);
+    console.log({ bellButton, subscribeButtonSection, videoMeta, child: subscribeButtonSection.childNodes[0] });
+    subscribeButtonSection.insertBefore(bellButton, subscribeButtonSection.childNodes[0]);
+    document.body.setAttribute('data-notified', 'true'); // Tell the page it's already embedded so it doesn't embed again
   };
 
-  const embeded = () => {
-    if (window.location.pathname === '/watch') watchPage();
+  const embeded = evt => {
+    if (window.location.pathname === '/watch') watchPage(evt);
   };
 
-  embeded();
   document.addEventListener('yt-navigate-finish', embeded);
+  document.addEventListener('yt-visibility-refresh', embeded);
 })();
