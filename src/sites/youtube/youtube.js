@@ -15,6 +15,7 @@
     return channelName;
   };
 
+  let bellButton = null;
   const watchPage = ({ type }) => {
     if (type === 'yt-navigate-finish') document.body.setAttribute('data-notified', 'false');
     if (document.body.getAttribute('data-notified') === 'true') return; // Don't embed if it's already on the page
@@ -26,7 +27,7 @@
 
     document.querySelector(`#subscribe-button.ytd-video-secondary-info-renderer`).style.flexDirection = 'row';
 
-    const bellButton = document.createElement('paper-button');
+    bellButton = document.createElement('paper-button');
     bellButton.classList = 'style-scope ytd-button-renderer style-default';
     bellButton.id = 'notify-bell';
     bellButton.setAttribute('elevation', '0');
@@ -49,6 +50,13 @@
     if (window.location.pathname === '/watch') watchPage(evt);
   };
 
-  document.addEventListener('yt-navigate-finish', embeded);
-  document.addEventListener('yt-visibility-refresh', embeded);
+  const clean = ({ type }) => {
+    if (bellButton != null) bellButton.remove();
+    document.body.setAttribute('data-notified', 'false');
+  };
+
+  document.addEventListener('yt-navigate-finish', clean);
+  document.addEventListener('yt-navigate-start', clean);
+  document.addEventListener('yt-page-data-updated', embeded);
+  // document.addEventListener('yt-visibility-refresh', embeded);
 })();
