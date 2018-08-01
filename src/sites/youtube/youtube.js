@@ -56,10 +56,20 @@
         // }, 100)
 
         
-            const b = document.querySelector('.style-scope.ytd-video-secondary-info-renderer#subscribe-button'); 
-            b.style.display = "none";
+            // const b = document.querySelector('.style-scope.ytd-video-secondary-info-renderer#subscribe-button'); 
+            // b.style.display = "none";
      
 
 });
 
 
+const bell = document.createElement('div');
+bell.innerText = 'AYYYYYY';
+
+let timer = window.setInterval(() => {
+  const container = document.querySelector('div#subscribe-button.style-scope.ytd-video-secondary-info-renderer');
+  const button = document.querySelector('ytd-subscribe-button-renderer');
+  if (!button || !container) return;
+  container.insertBefore(bell, button);
+  window.clearInterval(timer);
+}, 1000);
