@@ -10,10 +10,12 @@ const config = {
   mode: process.env.NODE_ENV,
   context: __dirname + '/src',
   entry: {
-    'background': './background.js',
+    background: './background.js',
     'popup/popup': './popup/popup.js',
     'options/options': './options/options.js',
-    'sites/youtube': './sites/youtube/youtube.js'
+    'sites/youtube': './sites/youtube/youtube.js',
+    'sites/twitch/injection': './sites/twitch/injection.js',
+    'sites/twitch/run': './sites/twitch/index.js',
   },
   output: {
     path: __dirname + '/dist',
@@ -66,7 +68,7 @@ const config = {
       {
         from: 'manifest.json',
         to: 'manifest.json',
-        transform: (content) => {
+        transform: content => {
           const jsonContent = JSON.parse(content);
           jsonContent.version = version;
 
@@ -95,9 +97,7 @@ if (config.mode === 'production') {
 }
 
 if (process.env.HMR === 'true') {
-  config.plugins = (config.plugins || []).concat([
-    new ChromeExtensionReloader(),
-  ]);
+  config.plugins = (config.plugins || []).concat([new ChromeExtensionReloader()]);
 }
 
 module.exports = config;

@@ -12,9 +12,7 @@
     "default_popup": "popup/popup.html"
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   },
   "options_ui": {
     "page": "options/options.html",
@@ -24,6 +22,11 @@
     {
       "js": ["sites/youtube.js"],
       "matches": ["*://*.youtube.com/*"]
+    },
+    {
+      "js": ["sites/twitch/injection.js"],
+      "matches": ["*://*.twitch.tv/*"]
     }
-  ]
+  ],
+  "web_accessible_resources": ["sites/twitch/run.js"]
 }
