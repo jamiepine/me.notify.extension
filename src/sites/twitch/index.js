@@ -24,7 +24,7 @@ router.events.on("channel", () => {
 		notifyBtn.classList = (layout === 1 ? "tw-button tw-button--hollow" : "tw-button tw-button--full-width tw-button--hollow");
 		if (layout === 2) notifyBtn.style = "margin-top: 10px;"
 		notifyBtn.id = "notify-me-button";
-		notifyBtn.setAttribute("channel", "notify-me-button");
+		notifyBtn.setAttribute("channel", getChannelName());
 
 		let notifyBtnText = document.createElement("span");
 		notifyBtnText.classList = "tw-button__text";
