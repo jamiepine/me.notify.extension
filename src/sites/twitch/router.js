@@ -43,7 +43,12 @@ Router.prototype.log = function(log) {
 
 // Check if the page is loaded
 Router.prototype.isLoaded = {
-	channel: () => !!document.querySelector(".channel-header__user-avatar img")
+	channel: () => {
+		return (
+			(!!document.querySelector(".channel-header__user-avatar img") && !!document.querySelector('[data-target="channel-header-right"]')) ||
+			!!document.querySelector("[data-test-selector='side-nav-channel-info__root'] img.tw-image")
+		)
+	}
 };
 
 // Wait for the page to load/timeout(15 seconds) before continuing
