@@ -1,24 +1,23 @@
 <template>
 <div class="popup_container">
-  <p>Hello world!</p>
-
+	<p>Hello world!</p>
 </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
+	data() {
+		return {};
+	}
 };
 </script>
 
 <style lang="scss" scoped>
 p {
-  font-size: 20px;
+	font-size: 20px;
 }
 .popup_container {
-  width: 400px;
-  height: 500px;
+	width: 400px;
+	height: 500px;
 }
 </style>
