@@ -15,7 +15,9 @@ const config = {
 		"options/options": "./options/options.js",
 		"sites/youtube": "./sites/youtube/youtube.js",
 		"sites/twitch/injection": "./sites/twitch/injection.js",
-		"sites/twitch/run": "./sites/twitch/index.js"
+		"sites/twitch/run": "./sites/twitch/index.js",
+		"sites/instagram/injection": "./sites/instagram/injection.js",
+		"sites/instagram/run": "./sites/instagram/index.js",
 	},
 	output: {
 		path: __dirname + "/dist",
